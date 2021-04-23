@@ -1,6 +1,6 @@
 const APP_PREFIX = 'BudgetTracker-';
 const VERSION = 'version_01'
-const CACHE_NAME = APP_PREFIX + VERSION;
+const DATA_CACHE_NAME = APP_PREFIX + VERSION;
 
 const FILES_TO_CACHE = [
     '/',
@@ -22,7 +22,7 @@ const FILES_TO_CACHE = [
 //install the service worker
 self.addEventListener('install', function(e) {
     e.waitUntil(
-        cache.open(CACHE_NAME).then(cache => {
+        cache.open(DATA_CACHE_NAME).then(cache => {
             console.log('your files were pre-cached');
             return cache.addAll(FILES_TO_CACHE);
         })
@@ -36,7 +36,7 @@ self.addEventListener('active', function(e) {
         caches.keys().then(keylist => {
             return Promise.all(
                 keylist.map(key => {
-                    if (key !==CACHE_NAME && key !== DATA_CACHE_NAME) {
+                    if (key !== DATA_CACHE_NAME && key !== DATA_CACHE_NAME) {
                         console.log('Removing Old Cache data', key);
                         return caches.delete(key)
                     }

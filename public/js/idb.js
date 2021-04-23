@@ -45,7 +45,7 @@ request.onsuccess = function(e) {
     const getAll = budgetObjectStore.getAll();
   
     getAll.onsuccess = function() {
-        alert('captured event')
+       
       //if there was data in indexedDb's store, let's send it to the api server
       if (getAll.result.length > 0) {
         fetch('/api/transaction', {
