@@ -28,11 +28,10 @@ router.get("/api/transaction", (req, res) => {
       res.json(dbTransaction);
     })
     .catch(err => {
-      console.log(ERROR)
       res.status(404).json(err);
     });
 });
 
-//clg
+
 
 module.exports = router;
