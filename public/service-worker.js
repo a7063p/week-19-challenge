@@ -31,12 +31,12 @@ self.addEventListener('install', function(e) {
 });
 
 // Activate the service worker and remove old data from cache
-self.addEventListener('active', function(e) {
+self.addEventListener('activate', function(e) {
     e.waitUntil(
-        caches.keys().then(keylist => {
+        caches.keys().then(keyList => {
             return Promise.all(
-                keylist.map(key => {
-                    if (key !== DATA_CACHE_NAME && key !== DATA_CACHE_NAME) {
+                keyList.map(key => {
+                    if (key !== DATA_CACHE_NAME ) {
                         console.log('Removing Old Cache data', key);
                         return caches.delete(key)
                     }
@@ -49,8 +49,7 @@ self.addEventListener('active', function(e) {
 
 // Intercept Fetch requests
 self.addEventListener('fetch', function(e) {
-    if (e.request.url.includes('/api/')) {
-      console.log(e.request.url);
+    if (e.request.url.includes('/api/')) {      
       e.respondWith(
         caches
           .open(DATA_CACHE_NAME)
@@ -82,8 +81,10 @@ self.addEventListener('fetch', function(e) {
         return caches.match(e.request).then(function(response) {
           if (response) {
             return response;
-          } 
-           return caches.match('/')
+          } else if (e.request.headers.get('accept').includes('text/html')) {
+            // return the cached home page for all requests for html pages
+            return caches.match('/');
+          }
         });
       })
     );
