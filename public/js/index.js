@@ -3,7 +3,6 @@ let myChart;
 
 fetch("/api/transaction")
   .then(response => {
-    console.log('this fetch', response);
     return response.json();
   })
   .then(data => {
@@ -99,7 +98,6 @@ function sendTransaction(isAdding) {
     value: amountEl.value,
     date: new Date().toISOString()
   };
-  console.log(transaction);
 
   // if subtracting funds, convert amount to negative number
   if (!isAdding) {
