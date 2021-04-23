@@ -22,12 +22,13 @@ router.post("/api/transaction/bulk", ({body}, res) => {
 });
 
 router.get("/api/transaction", (req, res) => {
-  
+  clg('transaction')  
   Transaction.find({}).sort({date: -1})
     .then(dbTransaction => {
       res.json(dbTransaction);
     })
     .catch(err => {
+      console.log(ERROR)
       res.status(404).json(err);
     });
 });
