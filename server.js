@@ -1,11 +1,12 @@
+  
 const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 const compression = require("compression");
 
-const PORT = process.env.PORT || 3001;
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/budget";
 
+const PORT = process.env.PORT || 3989;
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/budget";
 const app = express();
 
 app.use(logger("dev"));
@@ -16,15 +17,18 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-mongoose.connect(MONGODB_URI, {
+mongoose.connect(MONGODB_URI || 'mongo://localhost/Transaction', {
   useNewUrlParser: true,
-  useFindAndModify: false
+  useFindAndModify: false,
+  useUnifiedTopology: true
 });
+
+mongoose.set('useCreateIndex', true);
+mongoose.set('debug', true);
 
 // routes
 app.use(require("./routes/api.js"));
 
 app.listen(PORT, () => {
-  console.log(`http://localhost:${PORT}`);
+  console.log(`App running on port http://localhost:${PORT}`);
 });
-
