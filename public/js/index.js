@@ -3,6 +3,7 @@ let myChart;
 
 fetch("/api/transaction")
   .then(response => {
+    console.log('this fetch', response);
     return response.json();
   })
   .then(data => {
