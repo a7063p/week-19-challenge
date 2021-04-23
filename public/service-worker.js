@@ -6,7 +6,7 @@ const FILES_TO_CACHE = [
     '/',
     '/index.html',
     '/manifest.json',
-    '/css/style.css',
+    '/css/styles.css',
     '/icons/icon-72x72.png',
     '/icons/icon-96x96.png',
     '/icons/icon-128x128.png',
@@ -22,7 +22,7 @@ const FILES_TO_CACHE = [
 //install the service worker
 self.addEventListener('install', function(e) {
     e.waitUntil(
-        cache.open(DATA_CACHE_NAME).then(cache => {
+        caches.open(DATA_CACHE_NAME).then(cache => {
             console.log('your files were pre-cached');
             return cache.addAll(FILES_TO_CACHE);
         })
@@ -80,6 +80,7 @@ self.addEventListener('fetch', function(e) {
           if (response) {
             return response;
           } 
+           return caches.match('/')
         });
       })
     );
