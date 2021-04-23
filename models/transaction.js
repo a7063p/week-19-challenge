@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+const {Schema, model } = require("mongoose");
 
-const Schema = mongoose.Schema;
+//const Schema = mongoose.Schema;
 
 const transactionSchema = new Schema(
   {
@@ -20,6 +20,6 @@ const transactionSchema = new Schema(
   }
 );
 
-const Transaction = mongoose.model("Transaction", transactionSchema);
+const Transaction = model("Transaction", transactionSchema);
 
 module.exports = Transaction;
