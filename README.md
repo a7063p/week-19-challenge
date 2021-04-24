@@ -19,7 +19,8 @@ This PWA application allows users a fast and easy way to track their spending an
   
 
   ## Installation
-    This application is deployed to Heroku, please follow the above link to access. Additionally, if the user chooses to download the application; Please press "install app" icon in the upper right URL tool bar and follow the instructions.
+  This application is deployed to Heroku, please follow the above link to access. Additionally, if the user chooses to download the application; Please press "install app" icon in the upper right URL tool bar and follow the instructions.
+    
     
   ## Usage
   This application utilizes service-workers and Index DB so it is fully functional with or without internet/cellular connection. If off-line, Index DB maintains all transactions entered locally. Once connectivity is re-established, the user will see an 'alert' notification that all stored data had been uploaded into the DB. This is done automatically and requires no additional effort on the users end.
