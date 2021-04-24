@@ -17,6 +17,9 @@ const FILES_TO_CACHE = [
     '/icons/icon-512x512.png',
     '/js/idb.js',
     '/js/index.js',
+    // 
+    '/routes/api.js',
+    
 ];
 
 //install the service worker
