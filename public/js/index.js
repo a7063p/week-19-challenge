@@ -1,30 +1,30 @@
 let transactions = [];
 let myChart;
 
-fetch("/api/transaction")
-.then(function(response){
-  return response.json()
-})
-.then(function(data){
-  transactions = data;
-    populateTotal();
-    populateTable();
-    populateChart();
-})
-
 // fetch("/api/transaction")
-//   .then(response => {
-//     console.log("fetch", response);
-//     return response.json();
-//   })
-//   .then(data => {
-//     // save db data on global variable
-//     transactions = data;
-
+// .then(function(response){
+//   return response.json()
+// })
+// .then(function(data){
+//   transactions = data;
 //     populateTotal();
-//      populateTable();
-//      populateChart();
-//   });
+//     populateTable();
+//     populateChart();
+// })
+
+fetch("/api/transaction")
+  .then(response => {
+    console.log("fetch api/transaction", response);
+    return response.json();
+  })
+  .then(data => {
+    // save db data on global variable
+    transactions = data;
+
+    populateTotal();
+     populateTable();
+     populateChart();
+  });
 
 function populateTotal() {
   // reduce transaction amounts to a single total value
