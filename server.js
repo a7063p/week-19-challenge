@@ -6,7 +6,7 @@ const compression = require("compression");
 
 
 const PORT = process.env.PORT || 3989;
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/budget";
+const MONGODB_URI = process.env.MONGODB_URI ;
 const app = express();
 
 app.use(logger("dev"));
@@ -17,7 +17,7 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-mongoose.connect(MONGODB_URI || 'mongo://localhost/Transaction', {
+mongoose.connect(MONGODB_URI , {
   useNewUrlParser: true,
   useFindAndModify: false,
   useUnifiedTopology: true
@@ -32,3 +32,8 @@ app.use(require("./routes/api.js"));
 app.listen(PORT, () => {
   console.log(`App running on port http://localhost:${PORT}`);
 });
+
+
+// || 'mongo://localhost/Transaction'
+
+//|| "mongodb://localhost/budget"
