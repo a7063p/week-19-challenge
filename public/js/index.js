@@ -121,7 +121,7 @@ function sendTransaction(isAdding) {
 
   // re-run logic to populate ui with new record
   populateChart();
-  //populateTable();
+  populateTable();
   populateTotal();
   
   // also send to server
