@@ -1,10 +1,8 @@
-const APP_PREFIX = 'BudgetTracker-';
-const VERSION = 'version_01'
-const DATA_CACHE_NAME = APP_PREFIX + VERSION;
+const CACHE_NAME = 'budget-tracker-cache-v2'
+const DATA_CACHE_NAME = ' data-cache-v2';
 
 const FILES_TO_CACHE = [
-    '/',
-    
+      '/',    
     '/index.html',
     '/manifest.json',
     '/css/styles.css',
@@ -25,7 +23,7 @@ const FILES_TO_CACHE = [
 //install the service worker
 self.addEventListener('install', function(evt) {
     evt.waitUntil(
-        caches.open(DATA_CACHE_NAME).then(cache => {
+        caches.open(CACHE_NAME).then(cache => {
             console.log('your files were pre-cached');
             return cache.addAll(FILES_TO_CACHE);
         })
@@ -39,7 +37,7 @@ self.addEventListener('activate', function(evt) {
         caches.keys().then(keyList => {
             return Promise.all(
                 keyList.map(key => {
-                    if (key !== DATA_CACHE_NAME) {
+                    if (key !== CACHE_NAME && key !== DATA_CACHE_NAME) {
                         console.log('Removing Old Cache data', key);
                         return caches.delete(key)
                     }
